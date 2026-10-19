@@ -66,7 +66,20 @@ footer{background:#000;color:#fff;padding:2rem 0;text-align:center}
 @media(min-width:700px){.btns,.links{grid-template-columns:1fr 1fr}}
 @media(min-width:800px){.fix{display:none}body{padding-bottom:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.pics{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:2.5rem}.pics figure{border:3px solid #000}.pics img{display:block;width:100%;height:380px;object-fit:contain;background:#fff}.pics figcaption{background:#000;color:#fff;padding:.3rem 1.1rem;font-weight:700}.pics figure.nw figcaption{background:var(--o);color:#000}.me{display:block;width:100%;max-width:380px;aspect-ratio:4/5;object-fit:cover;object-position:top;border:3px solid #000;border-top:14px solid var(--o);margin:1.5rem 0}
+@keyframes grow{from{width:0}}
+.bar{animation:grow 3s ease-out .3s both}
+.bar.n{animation-duration:.3s}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,106,0,.7)}70%{box-shadow:0 0 0 18px rgba(255,106,0,0)}100%{box-shadow:0 0 0 0 rgba(255,106,0,0)}}
+.hero .btn.o,.fix .btn.o{animation:pulse 2.2s infinite}
+.btn{transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:scale(.97)}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
@@ -104,6 +117,7 @@ footer{background:#000;color:#fff;padding:2rem 0;text-align:center}
 <p>ریئر شاخ آٹو شکنجہ ریئر لیف اسپرنگ (شاخ) کھولنے کا خودکار ٹول ہے۔ یہ پرانے ریئر شاخ مینول شکنجے کا بہتر اور آسان ورژن ہے۔ ایک ہی شخص بغیر تھکن اور چوٹ کے ڈر کے کام کر لیتا ہے۔</p>
 <h3>کس نے بنایا؟</h3>
 <p>ناصر عباس (عمر 38 سال)، لاہور، پاکستان۔ ان کے مطابق پاکستان میں پہلی مرتبہ اس نوعیت کا جدید اور ہائی کوالٹی ٹول انہوں نے ہی بنایا ہے۔</p>
+<img class="me" src="nasir-abbas.jpg" alt="ناصر عباس، ریئر شاخ آٹو شکنجہ کے بنانے والے، لاہور، پاکستان" loading="lazy">
 <h3>کب لانچ ہوا؟</h3>
 <p>نیا ورژن 23 ستمبر 2026 کو لانچ ہوا اور مکینک کمیونٹی میں بہت سراہا گیا۔</p>
 </div>
@@ -112,6 +126,10 @@ footer{background:#000;color:#fff;padding:2rem 0;text-align:center}
 <section id="compare">
 <div class="wrap">
 <h2>پرانے اور نئے ٹول کا فرق</h2>
+<div class="pics">
+<figure><img src="old-manual-clamp.jpg" alt="ریئر شاخ مینول شکنجہ، پرانا ورژن" loading="lazy"><figcaption>پرانا مینول شکنجہ</figcaption></figure>
+<figure class="nw"><img src="new-auto-clamp.jpg" alt="ریئر شاخ آٹو شکنجہ، نیا نیلا ورژن" loading="lazy"><figcaption>نیا آٹو شکنجہ</figcaption></figure>
+</div>
 <div class="tw">
 <table>
 <tr><th></th><th>پرانا مینول شکنجہ</th><th>نیا آٹو شکنجہ</th></tr>
@@ -178,5 +196,12 @@ footer{background:#000;color:#fff;padding:2rem 0;text-align:center}
 <a class="btn wt" href="tel:+923015810712">کال کریں</a>
 </nav>
 
+<script>
+(function(){
+var t=document.querySelectorAll('.fact,.pics figure,.me,.note,details');
+var io='IntersectionObserver' in window?new IntersectionObserver(function(e,o){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target)}})},{threshold:.15}):null;
+t.forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(i%4)*.08+'s');if(io){io.observe(el)}else{el.classList.add('in')}});
+})();
+</script>
 </body>
 </html>
